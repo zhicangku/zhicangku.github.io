@@ -37,11 +37,11 @@
   ],
   "apps": [
     {
-      "name": "FFmpegTool 在线音视频处理",
-      "ver": "Web · 本地运行",
+      "name": "FFmpeg 在线音视频工具",
+      "ver": "本站集成",
       "os": [],
       "cat": "media",
-      "desc": "浏览器里的 FFmpeg 工具箱,基于 WebAssembly 在本地运行,音视频图片转码、剪辑、压缩无需上传文件,隐私安全。",
+      "desc": "基于 FFmpeg(WebAssembly)在浏览器本地运行:视频转码、压缩、提取音频、生成 GIF,文件不上传服务器,本站直达。",
       "tags": [
         "在线工具",
         "FFmpeg",
@@ -49,8 +49,8 @@
       ],
       "dl": [
         {
-          "name": "在线使用",
-          "url": "https://ffmpegtool.com/"
+          "name": "打开工具",
+          "url": "tools/ffmpeg/"
         }
       ]
     },

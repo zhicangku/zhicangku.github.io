@@ -15,6 +15,7 @@
 - Windows / macOS 平台筛选,分类标签过滤,实时搜索
 - 点击卡片弹窗展示网盘下载方式,支持单链接 / 双平台 / 多网盘三种格式
 - 响应式布局,移动端可正常使用
+- 内置[在线音视频工具](tools/ffmpeg/):基于 ffmpeg.wasm 在浏览器本地完成转码 / 压缩 / 提取音频 / 生成 GIF,文件不上传
 
 ## 如何新增资源
 
@@ -45,12 +46,14 @@
 ## 目录结构
 
 ```
-├── index.html   页面结构
-├── style.css    样式
-├── main.js      渲染与筛选逻辑
-├── data.json    资源数据(日常更新只改这个文件)
-├── robots.txt   搜索引擎抓取规则
-└── sitemap.xml  站点地图
+├── index.html         页面结构
+├── style.css          样式
+├── main.js            渲染与筛选逻辑
+├── data.json          资源数据(日常更新只改这个文件)
+├── robots.txt         搜索引擎抓取规则
+├── sitemap.xml        站点地图
+└── tools/
+    └── ffmpeg/        在线音视频处理工具(ffmpeg.wasm)
 ```
 
 ## 部署

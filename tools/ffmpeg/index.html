@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在线音视频处理 · 知仓库</title>
+  <meta name="description" content="知仓库在线音视频工具:基于 WebAssembly 在浏览器本地运行 FFmpeg,转码、压缩、提取音频、生成 GIF,文件不上传服务器。">
+  <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#1a66d9">
+  <link rel="canonical" href="https://zhicangku.github.io/tools/ffmpeg/">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='2' y='2' width='28' height='28' rx='6' fill='%231a66d9'/><text x='16' y='22' font-size='15' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>知</text></svg>">
+  <style>
+    :root { --blue:#1a66d9; --line:#e4e7eb; --muted:#6b7280; --ink:#1f2328; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; color:var(--ink); background:#fff; line-height:1.6; }
+    a { color:var(--blue); text-decoration:none; }
+    header { border-bottom:1px solid var(--line); }
+    .header-inner { max-width:860px; margin:0 auto; padding:14px 20px; display:flex; justify-content:space-between; align-items:center; }
+    .brand { display:flex; align-items:center; gap:8px; font-weight:600; font-size:16px; color:var(--ink); }
+    .brand-mark { display:inline-flex; width:28px; height:28px; background:var(--blue); color:#fff; border-radius:6px; align-items:center; justify-content:center; font-size:14px; }
+    main { max-width:860px; margin:0 auto; padding:32px 20px 60px; }
+    h1 { font-size:22px; margin-bottom:6px; }
+    .sub { color:var(--muted); font-size:14px; margin-bottom:24px; }
+    .card { border:1px solid var(--line); border-radius:8px; padding:20px; margin-bottom:16px; }
+    .label { font-size:13px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; margin-bottom:10px; }
+    #drop { border:1.5px dashed #c9ced6; border-radius:8px; padding:36px 16px; text-align:center; cursor:pointer; transition:border-color .15s, background .15s; }
+    #drop:hover, #drop.over { border-color:var(--blue); background:#f5f9ff; }
+    #drop p { color:var(--muted); font-size:14px; }
+    #drop .pick { color:var(--blue); }
+    #fileInfo { display:none; margin-top:12px; font-size:14px; }
+    #fileInfo b { font-weight:600; }
+    #fileInfo .size { color:var(--muted); }
+    .fmts { display:flex; flex-wrap:wrap; gap:8px; }
+    .fmt { border:1px solid var(--line); border-radius:6px; padding:7px 14px; font-size:14px; cursor:pointer; background:#fff; color:var(--ink); }
+    .fmt:hover { border-color:var(--blue); }
+    .fmt.on { background:var(--blue); border-color:var(--blue); color:#fff; }
+    .fmt small { display:block; font-size:12px; opacity:.75; font-weight:400; }
+    button.cta { width:100%; margin-top:16px; background:var(--blue); color:#fff; border:0; border-radius:6px; padding:12px; font-size:15px; font-weight:600; cursor:pointer; }
+    button.cta:disabled { background:#a8c3ea; cursor:not-allowed; }
+    button.cta:not(:disabled):hover { background:#1558bd; }
+    #progressWrap { display:none; margin-top:14px; }
+    .bar { height:6px; background:#eef0f3; border-radius:3px; overflow:hidden; }
+    .bar i { display:block; height:100%; width:0; background:var(--blue); transition:width .2s; }
+    #status { font-size:13px; color:var(--muted); margin-top:6px; }
+    #result { display:none; }
+    #result video, #result img, #result audio { display:block; max-width:100%; margin:12px 0; border-radius:6px; border:1px solid var(--line); }
+    #download { display:inline-block; background:var(--blue); color:#fff; border-radius:6px; padding:10px 22px; font-weight:600; }
+    #log { display:none; margin-top:12px; max-height:120px; overflow:auto; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:11px; color:var(--muted); background:#f7f8fa; border:1px solid var(--line); border-radius:6px; padding:8px 10px; white-space:pre-wrap; word-break:break-all; }
+    .note { font-size:13px; color:var(--muted); margin-top:8px; }
+    footer { border-top:1px solid var(--line); color:var(--muted); font-size:13px; }
+    .footer-inner { max-width:860px; margin:0 auto; padding:16px 20px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="brand" href="../../"><span class="brand-mark">知</span>知仓库 · 在线工具</a>
+    <a href="https://ffmpegwasm.netlify.app/" target="_blank" rel="noopener">ffmpeg.wasm</a>
+  </div>
+</header>
+
+<main>
+  <h1>在线音视频处理</h1>
+  <p class="sub">基于 FFmpeg(WebAssembly)在浏览器本地运行,文件不会上传到任何服务器。</p>
+
+  <div class="card">
+    <div class="label">1 · 选择文件</div>
+    <div id="drop">
+      <p>拖拽文件到此处,或 <span class="pick">点击选择</span></p>
+      <p>支持视频 / 音频 / 图片,在本地浏览器中处理</p>
+    </div>
+    <input type="file" id="file" hidden>
+    <div id="fileInfo"><b id="fileName"></b> <span class="size" id="fileSize"></span> <a href="#" id="clearFile">移除</a></div>
+  </div>
+
+  <div class="card">
+    <div class="label">2 · 选择输出格式</div>
+    <div class="fmts" id="fmts">
+      <button class="fmt on" data-fmt="mp4">MP4<small>通用视频</small></button>
+      <button class="fmt" data-fmt="mp4c">MP4 压缩<small>720p · 体积更小</small></button>
+      <button class="fmt" data-fmt="webm">WEBM<small>网页视频</small></button>
+      <button class="fmt" data-fmt="gif">GIF<small>动图</small></button>
+      <button class="fmt" data-fmt="mp3">MP3<small>提取音频</small></button>
+      <button class="fmt" data-fmt="m4a">M4A<small>提取音频</small></button>
+      <button class="fmt" data-fmt="wav">WAV<small>无损音频</small></button>
+    </div>
+    <button class="cta" id="run" disabled>开始处理</button>
+    <div id="progressWrap"><div class="bar"><i id="bar"></i></div><div id="status">准备中…</div></div>
+    <pre id="log"></pre>
+  </div>
+
+  <div class="card" id="result">
+    <div class="label">3 · 处理完成</div>
+    <div id="preview"></div>
+    <a id="download" download>保存到本地</a>
+  </div>
+
+  <p class="note">首次使用需下载 FFmpeg 内核(约 30MB,之后由浏览器缓存);大文件处理速度取决于设备性能。</p>
+</main>
+
+<footer><div class="footer-inner"><a href="../../">← 返回知仓库</a> · 处理全程在浏览器本地完成</div></footer>
+
+<script src="vendor/ffmpeg.js"></script>
+<script>
+(function () {
+  var FFmpeg = window.FFmpegWASM.FFmpeg;
+  function fetchFile(f) { return f.arrayBuffer().then(function (b) { return new Uint8Array(b); }); }
+  var ffmpeg = null, loaded = false, loading = false;
+  var file = null, fmt = "mp4", running = false;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var drop = $("drop"), fileInput = $("file"), runBtn = $("run");
+  var bar = $("bar"), status = $("status"), logEl = $("log"), result = $("result");
+
+  var CMDS = {
+    mp4:  function (i) { return ["-i", i, "-c:v", "libx264", "-preset", "ultrafast", "-crf", "23", "-c:a", "aac", "-movflags", "+faststart", "output.mp4"]; },
+    mp4c: function (i) { return ["-i", i, "-vf", "scale=-2:720", "-c:v", "libx264", "-preset", "ultrafast", "-crf", "28", "-c:a", "aac", "output.mp4"]; },
+    webm: function (i) { return ["-i", i, "-c:v", "libvpx", "-b:v", "1M", "-c:a", "libvorbis", "output.webm"]; },
+    gif:  function (i) { return ["-i", i, "-vf", "fps=10,scale=480:-1:flags=lanczos", "-loop", "0", "output.gif"]; },
+    mp3:  function (i) { return ["-i", i, "-vn", "-c:a", "libmp3lame", "-q:a", "3", "output.mp3"]; },
+    m4a:  function (i) { return ["-i", i, "-vn", "-c:a", "aac", "-b:a", "128k", "output.m4a"]; },
+    wav:  function (i) { return ["-i", i, "-vn", "output.wav"]; }
+  };
+  var OUT_EXT = { mp4: "mp4", mp4c: "mp4", webm: "webm", gif: "gif", mp3: "mp3", m4a: "m4a", wav: "wav" };
+
+  function fmtSize(n) {
+    if (n > 1048576) return (n / 1048576).toFixed(1) + " MB";
+    if (n > 1024) return (n / 1024).toFixed(0) + " KB";
+    return n + " B";
+  }
+  function log(line) {
+    logEl.style.display = "block";
+    logEl.textContent += line + "\n";
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+  function setProgress(p) {
+    var v = Math.max(0, Math.min(1, p || 0));
+    bar.style.width = (v * 100).toFixed(1) + "%";
+    status.textContent = "处理中 " + (v * 100).toFixed(0) + "%";
+  }
+
+  async function loadCore() {
+    if (loaded) return;
+    if (loading) throw new Error("内核加载中,请稍候");
+    loading = true;
+    status.textContent = "正在加载 FFmpeg 内核(约 30MB,首次较慢)…";
+    var base = new URL("vendor/", location.href).href;
+    await ffmpeg.load({
+      coreURL: base + "ffmpeg-core.js",
+      wasmURL: base + "ffmpeg-core.wasm"
+    });
+    loaded = true; loading = false;
+  }
+
+  ffmpeg = new FFmpeg();
+  ffmpeg.on("progress", function (e) { setProgress(e.progress); });
+  ffmpeg.on("log", function (e) { if (logEl.style.display === "block") log(e.message); });
+
+  function pickFile(f) {
+    if (running) return;
+    file = f || null;
+    if (file) {
+      $("fileName").textContent = file.name;
+      $("fileSize").textContent = "(" + fmtSize(file.size) + ")";
+      $("fileInfo").style.display = "block";
+      drop.style.display = "none";
+    } else {
+      $("fileInfo").style.display = "none";
+      drop.style.display = "block";
+    }
+    runBtn.disabled = !(file && !running);
+  }
+
+  drop.addEventListener("click", function () { fileInput.click(); });
+  fileInput.addEventListener("change", function () { pickFile(fileInput.files[0]); });
+  $("clearFile").addEventListener("click", function (e) {
+    e.preventDefault(); fileInput.value = ""; pickFile(null);
+  });
+  ["dragover", "dragenter"].forEach(function (ev) {
+    drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add("over"); });
+  });
+  ["dragleave", "drop"].forEach(function (ev) {
+    drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove("over"); });
+  });
+  drop.addEventListener("drop", function (e) { pickFile(e.dataTransfer.files[0]); });
+
+  $("fmts").addEventListener("click", function (e) {
+    var btn = e.target.closest(".fmt");
+    if (!btn || running) return;
+    fmt = btn.dataset.fmt;
+    document.querySelectorAll(".fmt").forEach(function (b) { b.classList.toggle("on", b === btn); });
+  });
+
+  runBtn.addEventListener("click", async function () {
+    if (running || !file) return;
+    running = true;
+    runBtn.disabled = true;
+    result.style.display = "none";
+    $("progressWrap").style.display = "block";
+    setProgress(0);
+    logEl.textContent = "";
+    try {
+      await loadCore();
+      var ext = (file.name.split(".").pop() || "bin").toLowerCase().replace(/[^a-z0-9]/g, "").slice(0, 8) || "bin";
+      var inName = "input." + ext;
+      await ffmpeg.writeFile(inName, await fetchFile(file));
+      status.textContent = "处理中…";
+      var out = "output." + OUT_EXT[fmt];
+      var code = await ffmpeg.exec(CMDS[fmt](inName));
+      if (code !== 0) throw new Error("FFmpeg 返回错误码 " + code + ",请查看日志");
+      var data = await ffmpeg.readFile(out);
+      await ffmpeg.deleteFile(inName);
+      try { await ffmpeg.deleteFile(out); } catch (err) {}
+      var blob = new Blob([data.buffer]);
+      var base = file.name.replace(/\.[^.]+$/, "") || "output";
+      var url = URL.createObjectURL(blob);
+      var pv = $("preview");
+      pv.innerHTML = "";
+      if (OUT_EXT[fmt] === "gif") { var img = new Image(); img.src = url; pv.appendChild(img); }
+      else if (OUT_EXT[fmt] === "mp4" || OUT_EXT[fmt] === "webm") { var v = document.createElement("video"); v.src = url; v.controls = true; pv.appendChild(v); }
+      else { var a = document.createElement("audio"); a.src = url; a.controls = true; pv.appendChild(a); }
+      var dl = $("download");
+      dl.href = url;
+      dl.download = base + "." + OUT_EXT[fmt];
+      result.style.display = "block";
+      bar.style.width = "100%";
+      status.textContent = "完成(" + fmtSize(blob.size) + ")";
+    } catch (err) {
+      log(String(err && err.message || err));
+      status.textContent = "处理失败,详情见下方日志";
+    } finally {
+      running = false;
+      runBtn.disabled = !file;
+    }
+  });
+})();
+</script>
+</body>
+</html>
