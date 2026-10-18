@@ -37,6 +37,26 @@
   ],
   "apps": [
     {
+      "name": "Mocreak",
+      "ver": "最新版",
+      "os": [
+        "win"
+      ],
+      "cat": "system",
+      "desc": "开源的 Windows 与 Office 自动化部署工具,免费、绿色、无广告。",
+      "tags": [
+        "开源",
+        "部署",
+        "Office"
+      ],
+      "dl": [
+        {
+          "name": "光鸭云盘",
+          "url": "https://www.guangyapan.com/s/1951918332319608914_arj7b7pkgvXoztB_"
+        }
+      ]
+    },
+    {
       "name": "AI视频画质修复工具",
       "ver": "网盘版",
       "os": [],
