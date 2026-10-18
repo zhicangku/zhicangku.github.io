@@ -215,21 +215,6 @@
       "dl": "https://typora.io/#download"
     },
     {
-      "name": "Snipaste",
-      "ver": "2.9.x",
-      "os": [
-        "win",
-        "mac"
-      ],
-      "cat": "work",
-      "desc": "截图 + 贴图工具,贴图功能让截图悬浮在桌面,效率神器。",
-      "tags": [
-        "截图",
-        "效率"
-      ],
-      "dl": "https://zh.snipaste.com/download.html"
-    },
-    {
       "name": "PotPlayer",
       "ver": "1.7.x",
       "os": [
