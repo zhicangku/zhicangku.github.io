@@ -47,12 +47,7 @@
         "FFmpeg",
         "无需上传"
       ],
-      "dl": [
-        {
-          "name": "打开工具",
-          "url": "tools/ffmpeg/"
-        }
-      ]
+      "link": "tools/ffmpeg/"
     },
     {
       "name": "Mocreak",

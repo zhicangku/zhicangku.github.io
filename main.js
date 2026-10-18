@@ -82,17 +82,17 @@ function bindEvents() {
     }
   });
 
-  // 点击整张卡片打开下载弹窗
+  // 点击整张卡片打开下载弹窗(直达链接的卡片除外,由 <a> 原生跳转)
   grid.addEventListener('click', (e) => {
     const card = e.target.closest('.card');
-    if (!card) return;
+    if (!card || card.tagName === 'A') return;
     const app = currentList[Number(card.dataset.i)];
     if (app) openModal(app);
   });
   grid.addEventListener('keydown', (e) => {
     if (e.key !== 'Enter') return;
     const card = e.target.closest('.card');
-    if (!card) return;
+    if (!card || card.tagName === 'A') return;
     const app = currentList[Number(card.dataset.i)];
     if (app) openModal(app);
   });
@@ -153,6 +153,19 @@ function render() {
     const meta =
       app.os.map((os) => `<span class="os-badge">${os === 'win' ? 'Windows' : 'macOS'}</span>`).join('') +
       app.tags.map((t) => `<span class="tag">${t}</span>`).join('');
+
+    // 带 link 的资源(如本站工具)整卡直达,不走下载弹窗
+    if (app.link) {
+      return `
+      <a class="card" href="${app.link}" aria-label="打开 ${app.name}">
+        <div class="card-head">
+          <span class="app-icon" style="background:${cat.color}">${app.name[0].toUpperCase()}</span>
+          <h3>${app.name}<span class="ver">${app.ver}</span></h3>
+        </div>
+        <p class="card-desc">${app.desc}</p>
+        <div class="card-meta">${meta}</div>
+      </a>`;
+    }
 
     return `
       <article class="card" data-i="${i}" tabindex="0" role="button" aria-label="查看 ${app.name} 的下载方式">
