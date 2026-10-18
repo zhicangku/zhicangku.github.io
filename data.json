@@ -37,6 +37,24 @@
   ],
   "apps": [
     {
+      "name": "FFmpegTool 在线音视频处理",
+      "ver": "Web · 本地运行",
+      "os": [],
+      "cat": "media",
+      "desc": "浏览器里的 FFmpeg 工具箱,基于 WebAssembly 在本地运行,音视频图片转码、剪辑、压缩无需上传文件,隐私安全。",
+      "tags": [
+        "在线工具",
+        "FFmpeg",
+        "无需上传"
+      ],
+      "dl": [
+        {
+          "name": "在线使用",
+          "url": "https://ffmpegtool.com/"
+        }
+      ]
+    },
+    {
       "name": "Mocreak",
       "ver": "最新版",
       "os": [
