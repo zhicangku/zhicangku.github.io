@@ -1,0 +1,304 @@
+{
+  "site": {
+    "name": "知仓库",
+    "desc": "精选优质软件与资源,持续收录更新。"
+  },
+  "categories": [
+    {
+      "id": "design",
+      "name": "设计创作",
+      "color": "#e8491d"
+    },
+    {
+      "id": "dev",
+      "name": "开发工具",
+      "color": "#1d5ce8"
+    },
+    {
+      "id": "work",
+      "name": "效率办公",
+      "color": "#0f8a4f"
+    },
+    {
+      "id": "media",
+      "name": "影音图像",
+      "color": "#7a3ce8"
+    },
+    {
+      "id": "culture",
+      "name": "传统文化",
+      "color": "#8d6e4e"
+    },
+    {
+      "id": "system",
+      "name": "系统工具",
+      "color": "#c07a00"
+    }
+  ],
+  "apps": [
+    {
+      "name": "AI视频画质修复工具",
+      "ver": "网盘版",
+      "os": [],
+      "cat": "media",
+      "desc": "AI 视频画质修复工具,支持对模糊低清视频进行超分与降噪修复。光鸭云盘提取口令:AI视频修复",
+      "tags": [
+        "AI工具",
+        "视频修复"
+      ],
+      "dl": [
+        {
+          "name": "光鸭云盘",
+          "url": "https://www.guangyapan.com/s/1958753647231922230_arj7b7pkgvXoztB_"
+        }
+      ]
+    },
+    {
+      "name": "张至顺道长全部合集",
+      "ver": "八部金刚功 · 长寿功 · 视频",
+      "os": [],
+      "cat": "culture",
+      "desc": "张至顺道长讲解演示八部金刚功与长寿功的完整视频合集,传统养生功法教学资料。",
+      "tags": [
+        "养生功法",
+        "视频",
+        "道学"
+      ],
+      "dl": [
+        {
+          "name": "光鸭云盘",
+          "url": "https://www.guangyapan.com/s/1955969890640732258_arj7b7pkgvXoztB_"
+        }
+      ]
+    },
+    {
+      "name": "Windows 11 官方镜像",
+      "ver": "原版 ISO · 多版本",
+      "os": [
+        "win"
+      ],
+      "cat": "system",
+      "desc": "微软官方原版 Windows 11 系统镜像,含家庭版/专业版等,适合全新安装与系统重装。",
+      "tags": [
+        "系统镜像",
+        "微软",
+        "重装"
+      ],
+      "dl": [
+        {
+          "name": "光鸭云盘",
+          "url": "https://www.guangyapan.com/s/1955934250196799559_arj7b7pkgvXoztB_"
+        }
+      ]
+    },
+    {
+      "name": "Adobe Photoshop",
+      "ver": "2025 v26.3",
+      "os": [
+        "win",
+        "mac"
+      ],
+      "cat": "design",
+      "desc": "行业标准的图像处理软件,摄影后期与平面设计必备。",
+      "tags": [
+        "修图",
+        "平面设计"
+      ],
+      "dl": "https://www.adobe.com/products/photoshop/free-trial-download.html"
+    },
+    {
+      "name": "Figma",
+      "ver": "Web / Desktop",
+      "os": [
+        "win",
+        "mac"
+      ],
+      "cat": "design",
+      "desc": "协作式 UI 设计工具,浏览器即开即用,团队实时协作。",
+      "tags": [
+        "UI设计",
+        "协作"
+      ],
+      "dl": "https://www.figma.com/downloads/"
+    },
+    {
+      "name": "Blender",
+      "ver": "4.5 LTS",
+      "os": [
+        "win",
+        "mac"
+      ],
+      "cat": "design",
+      "desc": "免费开源的三维创作套件,建模、雕刻、动画、渲染全流程覆盖。",
+      "tags": [
+        "三维",
+        "开源"
+      ],
+      "dl": "https://www.blender.org/download/"
+    },
+    {
+      "name": "Visual Studio Code",
+      "ver": "1.9x",
+      "os": [
+        "win",
+        "mac"
+      ],
+      "cat": "dev",
+      "desc": "微软出品的轻量级代码编辑器,插件生态极其丰富。",
+      "tags": [
+        "编辑器",
+        "微软"
+      ],
+      "dl": "https://code.visualstudio.com/Download"
+    },
+    {
+      "name": "JetBrains Toolbox",
+      "ver": "最新版",
+      "os": [
+        "win",
+        "mac"
+      ],
+      "cat": "dev",
+      "desc": "JetBrains 全家桶统一管理器,一键安装 IDEA、PyCharm 等 IDE。",
+      "tags": [
+        "IDE",
+        "开发者"
+      ],
+      "dl": "https://www.jetbrains.com/toolbox-app/download/"
+    },
+    {
+      "name": "Git",
+      "ver": "2.5x",
+      "os": [
+        "win",
+        "mac"
+      ],
+      "cat": "dev",
+      "desc": "分布式版本控制系统,开发者的必备基础工具。",
+      "tags": [
+        "版本控制",
+        "命令行"
+      ],
+      "dl": {
+        "win": "https://git-scm.com/download/win",
+        "mac": "https://git-scm.com/download/mac"
+      }
+    },
+    {
+      "name": "Obsidian",
+      "ver": "1.8",
+      "os": [
+        "win",
+        "mac"
+      ],
+      "cat": "work",
+      "desc": "基于本地 Markdown 的双向链接笔记,知识管理的第二大脑。",
+      "tags": [
+        "笔记",
+        "Markdown"
+      ],
+      "dl": "https://obsidian.md/download"
+    },
+    {
+      "name": "Typora",
+      "ver": "1.8.x",
+      "os": [
+        "win",
+        "mac"
+      ],
+      "cat": "work",
+      "desc": "所见即所得的 Markdown 编辑器,界面简洁,写作沉浸感极佳。",
+      "tags": [
+        "写作",
+        "Markdown"
+      ],
+      "dl": "https://typora.io/#download"
+    },
+    {
+      "name": "Snipaste",
+      "ver": "2.9.x",
+      "os": [
+        "win",
+        "mac"
+      ],
+      "cat": "work",
+      "desc": "截图 + 贴图工具,贴图功能让截图悬浮在桌面,效率神器。",
+      "tags": [
+        "截图",
+        "效率"
+      ],
+      "dl": "https://zh.snipaste.com/download.html"
+    },
+    {
+      "name": "PotPlayer",
+      "ver": "1.7.x",
+      "os": [
+        "win"
+      ],
+      "cat": "media",
+      "desc": "Windows 平台功能最强大的本地播放器,格式通吃,解码全面。",
+      "tags": [
+        "播放器",
+        "视频"
+      ],
+      "dl": "https://potplayer.daum.net/?lang=zh_CN"
+    },
+    {
+      "name": "IINA",
+      "ver": "1.3.x",
+      "os": [
+        "mac"
+      ],
+      "cat": "media",
+      "desc": "macOS 平台现代视频播放器,基于 mpv 内核,原生设计风格。",
+      "tags": [
+        "播放器",
+        "mac专属"
+      ],
+      "dl": "https://iina.io/"
+    },
+    {
+      "name": "7-Zip",
+      "ver": "24.x",
+      "os": [
+        "win"
+      ],
+      "cat": "system",
+      "desc": "开源免费的高压缩比解压缩工具,老牌经典,轻量无广告。",
+      "tags": [
+        "解压",
+        "开源"
+      ],
+      "dl": "https://www.7-zip.org/download.html"
+    },
+    {
+      "name": "Everything",
+      "ver": "1.4.x",
+      "os": [
+        "win"
+      ],
+      "cat": "system",
+      "desc": "Windows 文件秒搜神器,基于 NTFS 索引,输入即出结果。",
+      "tags": [
+        "搜索",
+        "文件管理"
+      ],
+      "dl": "https://www.voidtools.com/downloads/"
+    },
+    {
+      "name": "Motrix",
+      "ver": "1.8.x",
+      "os": [
+        "win",
+        "mac"
+      ],
+      "cat": "system",
+      "desc": "全能开源下载工具,支持 HTTP、BT、磁力链,界面清爽。",
+      "tags": [
+        "下载",
+        "开源"
+      ],
+      "dl": "https://motrix.app/zh-CN/"
+    }
+  ]
+}

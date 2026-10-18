@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知仓库 · 优质软件与资源分享</title>
+  <meta name="description" content="知仓库:精选设计、开发、效率软件与资源,持续更新。纯静态资源分享站,托管于 GitHub Pages。">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect x='2' y='2' width='28' height='28' rx='6' fill='%231a66d9'/><text x='16' y='22' font-size='15' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'>知</text></svg>">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="./">
+        <span class="brand-mark">知</span>
+        <span class="brand-name" id="siteName">知仓库</span>
+      </a>
+      <div class="search-wrap">
+        <input type="search" id="searchInput" placeholder="搜索软件…" autocomplete="off">
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <section class="page-intro">
+      <h1 id="pageTitle">软件与资源下载</h1>
+      <p class="page-desc" id="footDesc">精选优质软件与资源,持续收录更新。</p>
+      <p class="page-stats">
+        共 <b id="statApps">—</b> 款 · <span id="statCats">—</span> 个分类 · Windows / macOS
+      </p>
+    </section>
+
+    <div class="toolbar">
+      <div class="platform-switch" role="tablist" aria-label="平台筛选">
+        <button class="platform-btn is-active" data-platform="all" role="tab" aria-selected="true">全部</button>
+        <button class="platform-btn" data-platform="win" role="tab" aria-selected="false">Windows</button>
+        <button class="platform-btn" data-platform="mac" role="tab" aria-selected="false">macOS</button>
+      </div>
+      <div class="cat-chips" id="catChips"></div>
+    </div>
+
+    <div class="result-count" id="resultCount"></div>
+
+    <main class="grid" id="appGrid" aria-live="polite"></main>
+
+    <div class="empty" id="emptyState" hidden>
+      <p>没有找到匹配的资源,换个关键词试试。</p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>本站资源仅供个人学习与交流使用,请支持正版。下载链接均来自官方或网络公开渠道。</p>
+      <p class="footer-copy"><span id="footName">知仓库</span> · <span id="footYear"></span></p>
+    </div>
+  </footer>
+
+  <!-- 下载方式弹窗 -->
+  <div class="modal-mask" id="modalMask" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="关闭">&times;</button>
+      <div class="modal-head">
+        <span class="app-icon" id="modalIcon"></span>
+        <div>
+          <h3 id="modalTitle"></h3>
+          <p class="modal-ver" id="modalVer"></p>
+        </div>
+      </div>
+      <p class="modal-desc" id="modalDesc"></p>
+      <p class="modal-label">选择下载方式</p>
+      <div class="dl-list" id="dlList"></div>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
