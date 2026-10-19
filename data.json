@@ -37,6 +37,26 @@
   ],
   "apps": [
     {
+      "name": "WiFi 工具箱",
+      "ver": "最新版",
+      "os": [
+        "win"
+      ],
+      "cat": "system",
+      "desc": "WiFi 密码恢复与信号强度测试工具,一键查看本机已保存的无线网络密码,排查信号覆盖。",
+      "tags": [
+        "WiFi",
+        "密码恢复",
+        "网络工具"
+      ],
+      "dl": [
+        {
+          "name": "光鸭云盘",
+          "url": "https://www.guangyapan.com/s/1951887185564917779_arj7b7pkgvXoztB_"
+        }
+      ]
+    },
+    {
       "name": "FFmpeg 在线音视频工具",
       "ver": "本站集成",
       "os": [],
