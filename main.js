@@ -127,7 +127,7 @@ function filtered() {
 function parseDl(app) {
   if (Array.isArray(app.dl)) return app.dl;
   if (typeof app.dl === 'string') return [{ name: '下载链接', url: app.dl }];
-  const osName = { win: 'Windows 版', mac: 'macOS 版', android: 'Android 版' };
+  const osName = { win: 'Windows 版', mac: 'macOS 版', linux: 'Linux 版', android: 'Android 版' };
   return Object.entries(app.dl)
     .map(([os, url]) => ({ name: osName[os] || os, url }));
 }
@@ -151,7 +151,7 @@ function render() {
     const cat = catMap[app.cat] || { color: '#8a8a8a' };
     // 平台与标签合并展示在同一区块
     const meta =
-      app.os.map((os) => `<span class="os-badge">${os === 'win' ? 'Windows' : os === 'mac' ? 'macOS' : 'Android'}</span>`).join('') +
+      app.os.map((os) => `<span class="os-badge">${os === 'win' ? 'Windows' : os === 'mac' ? 'macOS' : os === 'linux' ? 'Linux' : 'Android'}</span>`).join('') +
       app.tags.map((t) => `<span class="tag">${t}</span>`).join('');
 
     // 带 link 的资源(如本站工具)整卡直达,不走下载弹窗
