@@ -37,6 +37,24 @@
   ],
   "apps": [
     {
+      "name": "Filee",
+      "ver": "免费开源",
+      "os": [],
+      "cat": "media",
+      "desc": "免费开源的格式转换工具,界面简洁,支持音视频、图片等多种格式互相转换。",
+      "tags": [
+        "开源",
+        "格式转换",
+        "免费"
+      ],
+      "dl": [
+        {
+          "name": "光鸭云盘",
+          "url": "https://www.guangyapan.com/s/1960556054849409026_arj7b7pkgvXoztB_"
+        }
+      ]
+    },
+    {
       "name": "WiFi 工具箱",
       "ver": "开源 · Android",
       "os": [
