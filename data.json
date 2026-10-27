@@ -37,6 +37,30 @@
   ],
   "apps": [
     {
+      "name": "Wifislax64",
+      "ver": "4.0 中文版",
+      "os": [
+        "linux"
+      ],
+      "cat": "system",
+      "desc": "WiFi 安全审计 Live 系统镜像,内置无线网络安全测试工具集,制作 U 盘启动盘即用。",
+      "tags": [
+        "系统镜像",
+        "WiFi",
+        "安全测试"
+      ],
+      "dl": [
+        {
+          "name": "光鸭云盘",
+          "url": "https://www.guangyapan.com/s/1962133417442160648_arj7b7pkgvXoztB_"
+        },
+        {
+          "name": "夸克网盘",
+          "url": "https://pan.quark.cn/s/ba811d73b613"
+        }
+      ]
+    },
+    {
       "name": "Filee",
       "ver": "免费开源",
       "os": [
