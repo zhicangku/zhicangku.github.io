@@ -370,7 +370,7 @@
     },
     {
       "name": "7-Zip",
-      "ver": "24.x",
+      "ver": "26.05",
       "os": [
         "win"
       ],
@@ -380,7 +380,16 @@
         "解压",
         "开源"
       ],
-      "dl": "https://www.7-zip.org/download.html"
+      "dl": [
+        {
+          "name": "夸克网盘",
+          "url": "https://pan.quark.cn/s/2f3d3f812a6b"
+        },
+        {
+          "name": "光鸭云盘",
+          "url": "https://www.guangyapan.com/s/1962792067294896197_arj7b7pkgvXoztB_"
+        }
+      ]
     },
     {
       "name": "Everything",
