@@ -333,7 +333,7 @@
     },
     {
       "name": "PotPlayer",
-      "ver": "1.7.x",
+      "ver": "26.10.21.0",
       "os": [
         "win"
       ],
@@ -343,7 +343,16 @@
         "播放器",
         "视频"
       ],
-      "dl": "https://potplayer.daum.net/?lang=zh_CN"
+      "dl": [
+        {
+          "name": "夸克网盘",
+          "url": "https://pan.quark.cn/s/32c960e50828"
+        },
+        {
+          "name": "光鸭云盘",
+          "url": "https://www.guangyapan.com/s/1962784838722334800_arj7b7pkgvXoztB_"
+        }
+      ]
     },
     {
       "name": "IINA",
