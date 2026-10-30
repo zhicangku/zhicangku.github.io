@@ -30,12 +30,35 @@
       "color": "#8d6e4e"
     },
     {
+      "id": "study",
+      "name": "学习教育",
+      "color": "#2e7d9b"
+    },
+    {
       "id": "system",
       "name": "系统工具",
       "color": "#c07a00"
     }
   ],
   "apps": [
+    {
+      "name": "27 考研名师资料合集",
+      "ver": "备考资料",
+      "os": [],
+      "cat": "study",
+      "desc": "名师课程、讲义、真题合集,覆盖公共课与专业课,备考路上不再盲目找资料。",
+      "tags": [
+        "考研",
+        "学习",
+        "资料合集"
+      ],
+      "dl": [
+        {
+          "name": "夸克网盘",
+          "url": "https://pan.quark.cn/s/a654cec33321"
+        }
+      ]
+    },
     {
       "name": "Wifislax64",
       "ver": "4.0 中文版",
